@@ -92,11 +92,16 @@
       button = document.createElement('button');
       button.innerHTML = 'Accept';
       button.onclick = function(){
-        console.log('vliovl');
         enableScroll();
+        closeWindow();
         return false;
       };
       elementAcceptButtonSection.appendChild(button);
+    }
+
+    function closeWindow() {
+      element = document.getElementById("cookie-consent-window");
+      element.style.display = "none";
     }
 
     disableScroll();
