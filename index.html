@@ -34,7 +34,21 @@
       document.getElementsByTagName('body')[0].appendChild(cookieWindowContainer);
     }
 
-   function createList() {
+    function createHeader() {
+      header = document.createElement('div');
+      header.style.textAlign = "center";
+      header.style.fontSize = "20px";
+      header.style.borderBottom = "1px solid black";
+      header.setAttribute("id", "header");
+      document.getElementById('cookie-consent-window').appendChild(header);
+      para = document.createElement("p");
+      node = document.createTextNode("GDPR consent");
+      para.appendChild(node);
+      element = document.getElementById("header");
+      element.appendChild(para);
+    }
+
+    function createList() {
       let listData = [
           'example 1',
           'example 2',
@@ -52,7 +66,7 @@
       listItem,
       i;
 
-      document.getElementsByTagName('body')[0].appendChild(listContainer);
+      document.getElementById('cookie-consent-window').appendChild(listContainer);
       listContainer.appendChild(listElement);
 
       for (i = 0; i < numberOfListItems; ++i) {
@@ -65,7 +79,7 @@
     // enableScroll();
 
     createWindow();
-
+    createHeader();
     createList();
   </script>
 </body>
