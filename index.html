@@ -76,6 +76,18 @@
       }
     }
 
+    function createRejectButton() {
+      elementRejectButtonSection = document.getElementById("reject-section");
+      btn = document.createElement('button');
+      btn.innerHTML = 'Reject';
+      btn.onclick = function(){
+        enableScroll();
+        closeWindow();
+        return false;
+      };
+      elementRejectButtonSection.appendChild(btn);
+    }
+
     function createFooter() {
       footer = document.createElement('div');
       footer.style.borderTop = "1px solid black";
@@ -91,15 +103,7 @@
       element.appendChild(rejectSection);
       element.appendChild(acceptSection);
 
-      elementRejectButtonSection = document.getElementById("reject-section");
-      btn = document.createElement('button');
-      btn.innerHTML = 'Reject';
-      btn.onclick = function(){
-        enableScroll();
-        closeWindow();
-        return false;
-      };
-      elementRejectButtonSection.appendChild(btn);
+      createRejectButton();
 
       elementAcceptButtonSection = document.getElementById("accept-button");
       button = document.createElement('button');
