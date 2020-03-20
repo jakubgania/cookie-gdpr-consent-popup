@@ -79,14 +79,27 @@
     function createFooter() {
       footer = document.createElement('div');
       footer.style.borderTop = "1px solid black";
+      footer.style.display = "flex";
       footer.setAttribute("id", "footer");
       document.getElementById('cookie-consent-window').appendChild(footer);
       element = document.getElementById("footer");
       rejectSection = document.createElement('div');
+      rejectSection.setAttribute("id", "reject-section");
+
       acceptSection = document.createElement('div');
       acceptSection.setAttribute("id", "accept-button");
       element.appendChild(rejectSection);
       element.appendChild(acceptSection);
+
+      elementRejectButtonSection = document.getElementById("reject-section");
+      btn = document.createElement('button');
+      btn.innerHTML = 'Reject';
+      btn.onclick = function(){
+        enableScroll();
+        closeWindow();
+        return false;
+      };
+      elementRejectButtonSection.appendChild(btn);
 
       elementAcceptButtonSection = document.getElementById("accept-button");
       button = document.createElement('button');
