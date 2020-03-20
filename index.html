@@ -6,7 +6,7 @@
   <title>Document</title>
   <style>
     body {
-      height: 1500px;
+      height: 2400px;
     }
   </style>
 </head>
@@ -84,11 +84,22 @@
       element = document.getElementById("footer");
       rejectSection = document.createElement('div');
       acceptSection = document.createElement('div');
+      acceptSection.setAttribute("id", "accept-button");
       element.appendChild(rejectSection);
       element.appendChild(acceptSection);
+
+      elementAcceptButtonSection = document.getElementById("accept-button");
+      button = document.createElement('button');
+      button.innerHTML = 'Accept';
+      button.onclick = function(){
+        console.log('vliovl');
+        enableScroll();
+        return false;
+      };
+      elementAcceptButtonSection.appendChild(button);
     }
 
-    // enableScroll();
+    disableScroll();
 
     createWindow();
     createHeader();
