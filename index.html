@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 1500px;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function disableScroll() {
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+    }
+
+    function enableScroll() {
+      document.getElementsByTagName('html')[0].style.overflow = 'auto'
+    }
+
+    function createWindow() {
+      cookieWindowContainer = document.createElement('div');
+      cookieWindowContainer.style.position = "absolute"
+      cookieWindowContainer.style.top = "50%";
+      cookieWindowContainer.style.left = "50%";
+      cookieWindowContainer.style.transform = "translate(-50%, -50%)";
+      cookieWindowContainer.style.width = "100%";
+      cookieWindowContainer.style.maxWidth = "600px";
+      cookieWindowContainer.style.height = "800px"
+      cookieWindowContainer.style.backgroundColor = "red";
+      cookieWindowContainer.setAttribute("id", "cookie-consent-window");
+      document.getElementsByTagName('body')[0].appendChild(cookieWindowContainer);
+    }
+
+   function createList() {
+      let listData = [
+          'example 1',
+          'example 2',
+          'example 3',
+          'example 4',
+          'example 5',
+          'example 6'
+      ],
+    
+      listContainer = document.createElement('div'),
+     
+      listElement = document.createElement('ul'),
+
+      numberOfListItems = listData.length,
+      listItem,
+      i;
+
+      document.getElementsByTagName('body')[0].appendChild(listContainer);
+      listContainer.appendChild(listElement);
+
+      for (i = 0; i < numberOfListItems; ++i) {
+          listItem = document.createElement('li');
+          listItem.innerHTML = listData[i];
+          listElement.appendChild(listItem);
+      }
+    }
+
+    // enableScroll();
+
+    createWindow();
+
+    createList();
+  </script>
+</body>
+</html>
