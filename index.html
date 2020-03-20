@@ -76,11 +76,24 @@
       }
     }
 
+    function createFooter() {
+      footer = document.createElement('div');
+      footer.style.borderTop = "1px solid black";
+      footer.setAttribute("id", "footer");
+      document.getElementById('cookie-consent-window').appendChild(footer);
+      element = document.getElementById("footer");
+      rejectSection = document.createElement('div');
+      acceptSection = document.createElement('div');
+      element.appendChild(rejectSection);
+      element.appendChild(acceptSection);
+    }
+
     // enableScroll();
 
     createWindow();
     createHeader();
     createList();
+    createFooter();
   </script>
 </body>
 </html>
