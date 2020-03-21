@@ -90,6 +90,7 @@ class CookieConsent {
     button.style.cssText = this.buttonCss;
     button.innerHTML = 'Accept';
     button.onclick = () => {
+      this.setCookie('accept', true, 3);
       this.enableScroll();
       this.closeWindow();
       return false;
@@ -161,15 +162,16 @@ class CookieConsent {
 
     // if cookie empty render else not render
     if (cookieValue != "") {
-      console.log('cookie not empty');
+      return true;
     } else {
-      console.log('cookie empty');
-      this.setCookie('example', true, 3);
+      // this.setCookie('example', true, 3);
+      return false;
     }
   }
 
   render() {
     // if (!this.isHttps()) return false;
+    if (!this.checkCookie()) return false;
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
