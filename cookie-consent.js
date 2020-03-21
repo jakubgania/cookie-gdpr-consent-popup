@@ -48,10 +48,10 @@ class CookieConsent {
       let data = JSON.parse(text);
       console.log(data);
       listOfVendors = data.vendors;
-      console.log(listOfVendors[0]['name']);
+      console.log(listOfVendors[0]['name'], '1');
+    }).then((listOfVendors) => {
+      console.log(listOfVendors[1]['name'], '2');
     });
-
-    console.log(listOfVendors[0]['name']);
 
     let listData = [
       'example 1',
