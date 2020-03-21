@@ -77,8 +77,9 @@ class CookieConsent {
     for (i = 0; i < numberOfListItems; ++i) {
         listItem = document.createElement('li');
         test = document.createElement('div');
+        test.style.display = "flex";
         x1 = document.createElement('div');
-        x1.innerHTML = listData[i];
+        x1.innerHTML = listOfVendors[i].name;
         x2 = document.createElement('div');
         x2.innerHTML = listData[i];
         test.appendChild(x1);
