@@ -50,6 +50,7 @@ class CookieConsent {
       let x1;
       let x2;
       let alink;
+      let alinkText;
       let i;
   
       document.getElementById('cookie-consent-window').appendChild(listContainer);
