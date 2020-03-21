@@ -44,7 +44,48 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
-    this.getVendorList2().then(data => listOfVendors = data.vendors);
+    this.getVendorList2().then((data) => {
+      listOfVendors = data.vendors;
+
+      let listData = [
+        'example 1',
+        'example 2',
+        'example 3',
+        'example 4',
+        'example 5',
+        'example 6',
+        'example 7'
+      ],
+  
+      listContainer = document.createElement('div'),
+      listElement = document.createElement('ul'),
+  
+      numberOfListItems = listData.length,
+      listItem,
+      test,
+      x1,
+      x2,
+      i;
+  
+      document.getElementById('cookie-consent-window').appendChild(listContainer);
+      listContainer.appendChild(listElement);
+  
+      for (i = 0; i < numberOfListItems; ++i) {
+          console.log(i);
+          listItem = document.createElement('li');
+          test = document.createElement('div');
+          test.style.display = "flex";
+          x1 = document.createElement('div');
+          x1.innerHTML = listOfVendors[i]['name'];
+          x2 = document.createElement('div');
+          x2.innerHTML = listData[i];
+          test.appendChild(x1);
+          test.appendChild(x2);
+          // listItem.innerHTML = listData[i];
+          listItem.appendChild(test);
+          listElement.appendChild(listItem);
+      }
+    });
     console.log(listOfVendors);
 
     // this.getVendorsList(this.vendrosListURL, (text) => {
@@ -55,45 +96,6 @@ class CookieConsent {
     // });
 
     // console.log(listOfVendors[0]['name']);
-
-    let listData = [
-      'example 1',
-      'example 2',
-      'example 3',
-      'example 4',
-      'example 5',
-      'example 6',
-      'example 7'
-    ],
-
-    listContainer = document.createElement('div'),
-    listElement = document.createElement('ul'),
-
-    numberOfListItems = listData.length,
-    listItem,
-    test,
-    x1,
-    x2,
-    i;
-
-    document.getElementById('cookie-consent-window').appendChild(listContainer);
-    listContainer.appendChild(listElement);
-
-    for (i = 0; i < numberOfListItems; ++i) {
-        console.log(i);
-        listItem = document.createElement('li');
-        test = document.createElement('div');
-        test.style.display = "flex";
-        x1 = document.createElement('div');
-        x1.innerHTML = listOfVendors[i]['name'];
-        x2 = document.createElement('div');
-        x2.innerHTML = listData[i];
-        test.appendChild(x1);
-        test.appendChild(x2);
-        // listItem.innerHTML = listData[i];
-        listItem.appendChild(test);
-        listElement.appendChild(listItem);
-    }
   }
 
   createRejectButton() {
