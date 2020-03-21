@@ -129,7 +129,8 @@ class CookieConsent {
   setCookie(cookieName, cookieValue, expire) {
     console.log('cookie');
     let d = new Date();
-    d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
+    // d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + (expire * 60 * 1000));
     let expires ="expires=" + d.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
@@ -156,11 +157,13 @@ class CookieConsent {
   checkCookie() {
     let cookieValue = this.getCookie('example');
     console.log(cookieValue);
+
+    // if cookie empty render else not render
   }
 
   render() {
     // if (!this.isHttps()) return false;
-    this.setCookie("example", true, 1);
+    this.setCookie("example", true, 4);
     this.checkCookie();
 
     let stateCheck = setInterval(() => {
