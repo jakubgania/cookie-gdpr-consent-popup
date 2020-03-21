@@ -44,37 +44,42 @@ class CookieConsent {
       let listContainer = document.createElement('div');
       let listElement = document.createElement('ul');
   
-      let numberOfListItems = 20;
-      let listItem;
-      let test;
-      let x1;
-      let x2;
-      let alink;
-      let alinkText;
-      let i;
-  
       document.getElementById('cookie-consent-window').appendChild(listContainer);
       listContainer.appendChild(listElement);
+
+      let numberOfListItems = 20;
   
       for (i = 0; i < numberOfListItems; ++i) {
-          listItem = document.createElement('li');
-          test = document.createElement('div');
-          test.style.display = "flex";
-          x1 = document.createElement('div');
-          x1.innerHTML = listOfVendors[i].name;
-          x2 = document.createElement('div');
-          alink = document.createElement('a');
-          alinkText = document.createTextNode('privacy policy');
-          alink.appendChild(alinkText);
-          alink.setAttribute('target', '_blank');
-          alink.href = listOfVendors[i].policyUrl;
-          x2.appendChild(alink);
-          test.appendChild(x1);
-          test.appendChild(x2);
-          listItem.appendChild(test);
-          listElement.appendChild(listItem);
+        this.createListItem(listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
+  }
+
+  createListItem(name, url) {
+    let listItem;
+    let test;
+    let x1;
+    let x2;
+    let alink;
+    let alinkText;
+    let i;
+
+    listItem = document.createElement('li');
+    test = document.createElement('div');
+    test.style.display = "flex";
+    x1 = document.createElement('div');
+    x1.innerHTML = name;
+    x2 = document.createElement('div');
+    alink = document.createElement('a');
+    alinkText = document.createTextNode('privacy policy');
+    alink.appendChild(alinkText);
+    alink.setAttribute('target', '_blank');
+    alink.href = url;
+    x2.appendChild(alink);
+    test.appendChild(x1);
+    test.appendChild(x2);
+    listItem.appendChild(test);
+    listElement.appendChild(listItem);
   }
 
   createRejectButton() {
