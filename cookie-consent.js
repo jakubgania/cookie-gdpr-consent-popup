@@ -134,12 +134,34 @@ class CookieConsent {
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
 
-  // get cookie
-  // check cookie
+  getCookie(cookieName) {
+    let name = cookieName + "=";
+    let ca = document.cookie.split(';');
+
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+
+      while (c.charAt(0) == '') {
+        c = c.substring(1);
+      }
+
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+
+    return "";
+  }
+  
+  checkCookie() {
+    let cookieValue = this.getCookie('example');
+    console.log(cookieValue);
+  }
 
   render() {
     // if (!this.isHttps()) return false;
     this.setCookie("example", true, 1);
+    this.checkCookie();
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
