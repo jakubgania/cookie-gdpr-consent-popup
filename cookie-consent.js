@@ -129,7 +129,7 @@ class CookieConsent {
   setCookie(cookieName, cookieValue, expire) {
     console.log('cookie');
     let d = new Date();
-    d.setTime(d.getTime() + (expire * 24 * 60 * 60));
+    d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
     let expires ="expires=" + d.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
