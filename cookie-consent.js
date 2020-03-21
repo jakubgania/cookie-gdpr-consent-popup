@@ -164,12 +164,12 @@ class CookieConsent {
       console.log('cookie not empty');
     } else {
       console.log('cookie empty');
+      this.setCookie('example', true, 3);
     }
   }
 
   render() {
     // if (!this.isHttps()) return false;
-    this.checkCookie();
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
