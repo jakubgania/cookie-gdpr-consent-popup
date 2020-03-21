@@ -67,6 +67,8 @@ class CookieConsent {
     numberOfListItems = listData.length,
     listItem,
     test,
+    x1,
+    x2,
     i;
 
     document.getElementById('cookie-consent-window').appendChild(listContainer);
@@ -75,7 +77,12 @@ class CookieConsent {
     for (i = 0; i < numberOfListItems; ++i) {
         listItem = document.createElement('li');
         test = document.createElement('div');
-        test.innerHTML = listData[i];
+        x1 = document.createElement('div');
+        x1.innerHTML = listData[i];
+        x2 = document.createElement('div');
+        x2.innerHTML = listData[i];
+        test.appendChild(x1);
+        test.appendChild(x2);
         // listItem.innerHTML = listData[i];
         listItem.appendChild(test);
         listElement.appendChild(listItem);
