@@ -119,9 +119,15 @@ function closeWindow() {
 // check cookies
 // check protocol type
 
-disableScroll();
+let stateCheck = setInterval(() => {
+  if (document.readyState === 'complete') {
+    clearInterval(stateCheck);
+    
+    disableScroll();
+    createWindow();
+    createHeader();
+    createList();
+    createFooter();
+  }
+}, 100);
 
-createWindow();
-createHeader();
-createList();
-createFooter();
