@@ -223,7 +223,7 @@ class CookieConsent {
     rawFile.send(null);
   }
 
-  async getVendorList2() {
+  getVendorList2 = async () => {
     const response = await fetch(this.vendrosListURL);
     const json = await response.json();
     return json;
