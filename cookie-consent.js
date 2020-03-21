@@ -80,6 +80,7 @@ class CookieConsent {
     listContainer.appendChild(listElement);
 
     for (i = 0; i < numberOfListItems; ++i) {
+        console.log(i);
         listItem = document.createElement('li');
         test = document.createElement('div');
         test.style.display = "flex";
