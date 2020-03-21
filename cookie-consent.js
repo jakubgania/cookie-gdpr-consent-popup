@@ -66,6 +66,7 @@ class CookieConsent {
 
     numberOfListItems = listData.length,
     listItem,
+    test,
     i;
 
     document.getElementById('cookie-consent-window').appendChild(listContainer);
