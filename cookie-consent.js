@@ -44,7 +44,7 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
-    this.getVendorList2().then((data) => {
+    this.getVendorList().then((data) => {
       listOfVendors = data.vendors;
 
       let listData = [
@@ -60,7 +60,8 @@ class CookieConsent {
       listContainer = document.createElement('div'),
       listElement = document.createElement('ul'),
   
-      numberOfListItems = listData.length,
+      // numberOfListItems = listData.length,
+      numberOfListItems = 20,
       listItem,
       test,
       x1,
@@ -71,31 +72,19 @@ class CookieConsent {
       listContainer.appendChild(listElement);
   
       for (i = 0; i < numberOfListItems; ++i) {
-          console.log(i);
           listItem = document.createElement('li');
           test = document.createElement('div');
           test.style.display = "flex";
           x1 = document.createElement('div');
-          x1.innerHTML = listOfVendors[i]['name'];
+          x1.innerHTML = listOfVendors[i].name;
           x2 = document.createElement('div');
-          x2.innerHTML = listData[i];
+          x2.innerHTML = listOfVendors[i].policyUrl;
           test.appendChild(x1);
           test.appendChild(x2);
-          // listItem.innerHTML = listData[i];
           listItem.appendChild(test);
           listElement.appendChild(listItem);
       }
     });
-    console.log(listOfVendors);
-
-    // this.getVendorsList(this.vendrosListURL, (text) => {
-    //   let data = JSON.parse(text);
-    //   console.log(data);
-    //   listOfVendors = data.vendors;
-    //   console.log(listOfVendors[0]['name']);
-    // });
-
-    // console.log(listOfVendors[0]['name']);
   }
 
   createRejectButton() {
@@ -215,19 +204,7 @@ class CookieConsent {
     }, 100);
   }
 
-  getVendorsList(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
-  }
-
-   async getVendorList2() {
+  async getVendorList() {
     const response = await fetch(this.vendrosListURL);
     const json = await response.json();
     return json;
