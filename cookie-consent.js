@@ -41,15 +41,16 @@ class CookieConsent {
     this.getVendorList().then((data) => {
       listOfVendors = data.vendors;
   
-      listContainer = document.createElement('div'),
-      listElement = document.createElement('ul'),
+      let listContainer = document.createElement('div');
+      let listElement = document.createElement('ul');
   
-      numberOfListItems = 20,
-      listItem,
-      test,
-      x1,
-      x2,
-      i;
+      let numberOfListItems = 20;
+      let listItem;
+      let test;
+      let x1;
+      let x2;
+      let alink;
+      let i;
   
       document.getElementById('cookie-consent-window').appendChild(listContainer);
       listContainer.appendChild(listElement);
@@ -61,7 +62,11 @@ class CookieConsent {
           x1 = document.createElement('div');
           x1.innerHTML = listOfVendors[i].name;
           x2 = document.createElement('div');
-          x2.innerHTML = listOfVendors[i].policyUrl;
+          alink = document.createElement('a');
+          alink.title('privacy policy');
+          alink.href = listOfVendors[i].policyUrl
+          // x2.innerHTML = listOfVendors[i].policyUrl;
+          x2.appendChild(alink);
           test.appendChild(x1);
           test.appendChild(x2);
           listItem.appendChild(test);
