@@ -1,7 +1,7 @@
 class CookieConsent {
   constructor() {
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
-    this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%), width: 100%; max-width: 600px; height: 800px; background-color: #f2f2f2;"
+    this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; height: 800px; background-color: #f2f2f2;"
     this.buttonCss = "font-size: 18px;padding-left:30px;padding-right:30px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
     this.checkCookie();
   }
@@ -40,21 +40,10 @@ class CookieConsent {
 
     this.getVendorList().then((data) => {
       listOfVendors = data.vendors;
-
-      let listData = [
-        'example 1',
-        'example 2',
-        'example 3',
-        'example 4',
-        'example 5',
-        'example 6',
-        'example 7'
-      ],
   
       listContainer = document.createElement('div'),
       listElement = document.createElement('ul'),
   
-      // numberOfListItems = listData.length,
       numberOfListItems = 20,
       listItem,
       test,
