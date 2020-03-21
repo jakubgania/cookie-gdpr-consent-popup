@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title></title>
   <style>
     body {
       height: 2400px;
@@ -29,7 +29,7 @@
       cookieWindowContainer.style.width = "100%";
       cookieWindowContainer.style.maxWidth = "600px";
       cookieWindowContainer.style.height = "800px"
-      cookieWindowContainer.style.backgroundColor = "red";
+      cookieWindowContainer.style.backgroundColor = "#f2f2f2";
       cookieWindowContainer.setAttribute("id", "cookie-consent-window");
       document.getElementsByTagName('body')[0].appendChild(cookieWindowContainer);
     }
@@ -38,7 +38,7 @@
       header = document.createElement('div');
       header.style.textAlign = "center";
       header.style.fontSize = "20px";
-      header.style.borderBottom = "1px solid black";
+      header.style.borderBottom = "1px solid #b3b3b3";
       header.setAttribute("id", "header");
       document.getElementById('cookie-consent-window').appendChild(header);
       para = document.createElement("p");
@@ -78,6 +78,7 @@
 
     function createRejectButton() {
       elementRejectButtonSection = document.getElementById("reject-section");
+      elementRejectButtonSection.style.cssText = "width: 50%;text-align: center;";
       btn = document.createElement('button');
       btn.innerHTML = 'Reject';
       btn.onclick = function(){
@@ -90,7 +91,9 @@
 
     function createAcceptButton() {
       elementAcceptButtonSection = document.getElementById("accept-button");
+      elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
       button = document.createElement('button');
+      button.style.cssText = "font-size: 18px;padding-left:20px;padding-right:20px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
       button.innerHTML = 'Accept';
       button.onclick = function(){
         enableScroll();
@@ -102,8 +105,10 @@
 
     function createFooter() {
       footer = document.createElement('div');
-      footer.style.borderTop = "1px solid black";
+      footer.style.borderTop = "1px solid #b3b3b3";
       footer.style.display = "flex";
+      footer.style.height = "60px";
+      footer.style.lineHeight = "60px";
       footer.setAttribute("id", "footer");
       document.getElementById('cookie-consent-window').appendChild(footer);
       element = document.getElementById("footer");
@@ -123,6 +128,9 @@
       element = document.getElementById("cookie-consent-window");
       element.style.display = "none";
     }
+
+    // check cookies
+    // check protocol type
 
     disableScroll();
 
