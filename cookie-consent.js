@@ -50,7 +50,7 @@ class CookieConsent {
       let numberOfListItems = 20;
   
       for (let i = 0; i < numberOfListItems; ++i) {
-        this.createListItem(listOfVendors[i].name, listOfVendors[i].policyUrl);
+        this.createListItem(listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
   }
