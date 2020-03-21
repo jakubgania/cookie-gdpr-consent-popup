@@ -126,10 +126,20 @@ class CookieConsent {
     return document.location.protocol === 'https';
   }
 
-  // check cookies
+  setCookie(cookieName, cookieValue, expire) {
+    console.log('cookie');
+    let d = new Date();
+    d.setTime(d.getTime() + (expire * 24 * 60 * 60));
+    let expires ="expires=" + d.toUTCString();
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+  }
+
+  // get cookie
+  // check cookie
 
   render() {
     // if (!this.isHttps()) return false;
+    this.setCookie("example", true, 1);
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
