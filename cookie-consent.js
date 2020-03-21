@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
-    this.buttonCss = "font-size: 18px;padding-left:20px;padding-right:20px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
+    this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
+    this.buttonCss = "font-size: 18px;padding-left:30px;padding-right:30px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
     this.checkCookie();
   }
 
@@ -41,6 +42,15 @@ class CookieConsent {
   }
 
   createList() {
+    let listx = [];
+
+    cookie.readTextFile(this.vendrosListURL, (text) => {
+      let data = JSON.parse(text);
+      console.log(data);
+      listx = data.vendors;
+      console.log(listx);
+    });
+
     let listData = [
       'example 1',
       'example 2',
@@ -184,6 +194,18 @@ class CookieConsent {
         this.createFooter();
       }
     }, 100);
+  }
+
+  getVendorsList(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
   }
 }
 
