@@ -79,7 +79,7 @@ class CookieConsent {
         test = document.createElement('div');
         test.style.display = "flex";
         x1 = document.createElement('div');
-        x1.innerHTML = listOfVendors[i].name;
+        x1.innerHTML = listOfVendors[i]['name'];
         x2 = document.createElement('div');
         x2.innerHTML = listData[i];
         test.appendChild(x1);
