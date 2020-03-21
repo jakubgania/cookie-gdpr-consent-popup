@@ -44,14 +44,16 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
+    this.getVendorList2();
+
     this.getVendorsList(this.vendrosListURL, (text) => {
       let data = JSON.parse(text);
       console.log(data);
       listOfVendors = data.vendors;
-      console.log(listOfVendors[0]['name'], '1');
-    }).then((listOfVendors) => {
-      console.log(listOfVendors[1]['name'], '2');
+      console.log(listOfVendors[0]['name']);
     });
+
+    // console.log(listOfVendors[0]['name']);
 
     let listData = [
       'example 1',
@@ -219,6 +221,12 @@ class CookieConsent {
         }
     }
     rawFile.send(null);
+  }
+
+  async getVendorList2() {
+    const response = await fetch(this.vendrosListURL);
+    const json = await response.json();
+    console.log(json);
   }
 }
 
