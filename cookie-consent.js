@@ -122,10 +122,15 @@ class CookieConsent {
     element.style.display = "none";
   }
 
+  isHttps() {
+    return document.location.protocol === 'https';
+  }
+
   // check cookies
-  // check protocol type
 
   render() {
+    // if (!this.isHttps()) return false;
+
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(stateCheck);
