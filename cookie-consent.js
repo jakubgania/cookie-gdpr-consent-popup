@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
-    this.buttonCss = "font-size: 18px;padding-left:20px;padding-right:20px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;"
+    this.buttonCss = "font-size: 18px;padding-left:20px;padding-right:20px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
+    this.checkCookie();
   }
 
   disableScroll() {
@@ -185,5 +186,4 @@ class CookieConsent {
 }
 
 const cookie = new CookieConsent();
-cookie.setCookie("example", true, 4);
 cookie.render();
