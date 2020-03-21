@@ -44,7 +44,8 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
-    this.getVendorList2().then(data => console.log(data));
+    this.getVendorList2().then(data => listOfVendors = data.vendors);
+    console.log(listOfVendors);
 
     // this.getVendorsList(this.vendrosListURL, (text) => {
     //   let data = JSON.parse(text);
