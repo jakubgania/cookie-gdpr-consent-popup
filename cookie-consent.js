@@ -159,6 +159,11 @@ class CookieConsent {
     console.log(cookieValue);
 
     // if cookie empty render else not render
+    if (cookieValue != "") {
+      console.log('cookie not empty');
+    } else {
+      console.log('cookie empty');
+    }
   }
 
   render() {
