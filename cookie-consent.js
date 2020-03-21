@@ -49,7 +49,7 @@ class CookieConsent {
 
       let numberOfListItems = 20;
   
-      for (i = 0; i < numberOfListItems; ++i) {
+      for (let i = 0; i < numberOfListItems; ++i) {
         this.createListItem(listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
@@ -62,7 +62,6 @@ class CookieConsent {
     let x2;
     let alink;
     let alinkText;
-    let i;
 
     listItem = document.createElement('li');
     test = document.createElement('div');
