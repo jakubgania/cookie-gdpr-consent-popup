@@ -63,9 +63,11 @@ class CookieConsent {
           x1.innerHTML = listOfVendors[i].name;
           x2 = document.createElement('div');
           alink = document.createElement('a');
-          alink.title = 'privacy policy';
-          alink.href = listOfVendors[i].policyUrl
-          // x2.innerHTML = listOfVendors[i].policyUrl;
+          alinkText = document.createTextNode('privacy policy');
+          alink.appendChild(alinkText);
+          alink.appendChild('privacy policy');
+          alink.setAttribute('target', '_blank');
+          alink.href = listOfVendors[i].policyUrl;
           x2.appendChild(alink);
           test.appendChild(x1);
           test.appendChild(x2);
