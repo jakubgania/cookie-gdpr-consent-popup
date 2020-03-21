@@ -42,13 +42,13 @@ class CookieConsent {
   }
 
   createList() {
-    let listx = [];
+    let listOfVendors = [];
 
-    cookie.readTextFile(this.vendrosListURL, (text) => {
+    this.getVendorsList(this.vendrosListURL, (text) => {
       let data = JSON.parse(text);
       console.log(data);
-      listx = data.vendors;
-      console.log(listx);
+      listOfVendors = data.vendors;
+      console.log(listOfVendors);
     });
 
     let listData = [
