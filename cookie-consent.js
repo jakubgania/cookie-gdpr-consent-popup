@@ -55,7 +55,7 @@ class CookieConsent {
     });
   }
 
-  createListItem(name, url) {
+  createListItem(listElement, name, url) {
     let listItem;
     let test;
     let x1;
