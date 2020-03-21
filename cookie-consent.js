@@ -66,7 +66,6 @@ class CookieConsent {
           alink = document.createElement('a');
           alinkText = document.createTextNode('privacy policy');
           alink.appendChild(alinkText);
-          alink.appendChild('privacy policy');
           alink.setAttribute('target', '_blank');
           alink.href = listOfVendors[i].policyUrl;
           x2.appendChild(alink);
