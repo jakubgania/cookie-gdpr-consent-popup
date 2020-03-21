@@ -44,7 +44,7 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
-    listOfVendors = this.getVendorList2();
+    this.getVendorList2().then(data => console.log(data));
 
     // this.getVendorsList(this.vendrosListURL, (text) => {
     //   let data = JSON.parse(text);
@@ -223,7 +223,7 @@ class CookieConsent {
     rawFile.send(null);
   }
 
-  getVendorList2 = async () => {
+   async getVendorList2() {
     const response = await fetch(this.vendrosListURL);
     const json = await response.json();
     return json;
