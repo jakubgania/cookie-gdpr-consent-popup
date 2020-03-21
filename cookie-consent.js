@@ -51,6 +51,8 @@ class CookieConsent {
       console.log(listOfVendors[0]['name']);
     });
 
+    console.log(listOfVendors[0]['name']);
+
     let listData = [
       'example 1',
       'example 2',
