@@ -88,6 +88,18 @@
       elementRejectButtonSection.appendChild(btn);
     }
 
+    function createAcceptButton() {
+      elementAcceptButtonSection = document.getElementById("accept-button");
+      button = document.createElement('button');
+      button.innerHTML = 'Accept';
+      button.onclick = function(){
+        enableScroll();
+        closeWindow();
+        return false;
+      };
+      elementAcceptButtonSection.appendChild(button);
+    }
+
     function createFooter() {
       footer = document.createElement('div');
       footer.style.borderTop = "1px solid black";
@@ -104,16 +116,7 @@
       element.appendChild(acceptSection);
 
       createRejectButton();
-
-      elementAcceptButtonSection = document.getElementById("accept-button");
-      button = document.createElement('button');
-      button.innerHTML = 'Accept';
-      button.onclick = function(){
-        enableScroll();
-        closeWindow();
-        return false;
-      };
-      elementAcceptButtonSection.appendChild(button);
+      createAcceptButton();
     }
 
     function closeWindow() {
