@@ -74,7 +74,7 @@ class CookieConsent {
     let btn = document.createElement('button');
     btn.style.cssText = this.buttonCss;
     btn.innerHTML = 'Reject';
-    btn.onclick = function(){
+    btn.onclick = () => {
       this.enableScroll();
       this.closeWindow();
       return false;
@@ -89,7 +89,7 @@ class CookieConsent {
     button.style.cssText = this.buttonCss;
     button.innerHTML = 'Accept';
     button.onclick = () => {
-      // this.enableScroll();
+      this.enableScroll();
       this.closeWindow();
       return false;
     };
