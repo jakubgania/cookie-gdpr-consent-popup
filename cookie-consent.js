@@ -56,12 +56,7 @@ class CookieConsent {
   }
 
   createListItem(listElement, name, url) {
-    let listItem;
-    let test;
-    let x1;
-    let x2;
-    let alink;
-    let alinkText;
+    let listItem, test, x1, x2, alink, alinkText;
 
     listItem = document.createElement('li');
     test = document.createElement('div');
