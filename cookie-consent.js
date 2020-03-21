@@ -168,7 +168,6 @@ class CookieConsent {
 
   render() {
     // if (!this.isHttps()) return false;
-    this.setCookie("example", true, 4);
     this.checkCookie();
 
     let stateCheck = setInterval(() => {
@@ -186,4 +185,5 @@ class CookieConsent {
 }
 
 const cookie = new CookieConsent();
+cookie.setCookie("example", true, 4);
 cookie.render();
