@@ -22,6 +22,7 @@ class CookieConsent {
 
   createWindow() {
     let fullSizeContainer = document.createElement('div');
+    fullSizeContainer.setAttribute("id", "full-size-container");
     fullSizeContainer.style.cssText = this.fullSizeContainerCss;
 
     let cookieWindowContainer = document.createElement('div');
