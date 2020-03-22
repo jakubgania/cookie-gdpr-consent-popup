@@ -138,8 +138,7 @@ class CookieConsent {
   }
 
   isHttps() {
-    console.log(document.location.protocol);
-    return document.location.protocol === 'https';
+    return document.location.protocol === 'https:';
   }
 
   setCookie(cookieName, cookieValue, expire) {
@@ -184,7 +183,6 @@ class CookieConsent {
   }
 
   render() {
-    console.log(this.isHttps());
     if (!this.isHttps()) return false;
     // if (!this.checkCookie()) return false;
 
