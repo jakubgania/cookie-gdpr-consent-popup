@@ -138,6 +138,7 @@ class CookieConsent {
   }
 
   isHttps() {
+    console.log(document.location.protocol);
     return document.location.protocol === 'https';
   }
 
