@@ -51,7 +51,7 @@ class CookieConsent {
       listContainer.appendChild(listElement);
       let xmp = document.getElementById('cookie-consent-window');
       let footer = document.getElementById('footer');
-      listContainer.insertBefore(listContainer, footer);
+      xmp.insertBefore(listContainer, footer);
 
       let numberOfListItems = 20;
   
