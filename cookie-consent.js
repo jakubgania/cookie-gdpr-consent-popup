@@ -97,10 +97,10 @@ class CookieConsent {
     acceptButton.addEventListener('click', () => {
       this.addVendorToList(counter);
       
-      if ("green" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
+      if ("lawngreen" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
         document.getElementById(`accept-button-${counter}`).style.backgroundColor = "";
       } else {
-        document.getElementById(`accept-button-${counter}`).style.backgroundColor = "green";
+        document.getElementById(`accept-button-${counter}`).style.backgroundColor = "lawngreen";
       }
     });
     listItemLi.appendChild(nameDivSection);
