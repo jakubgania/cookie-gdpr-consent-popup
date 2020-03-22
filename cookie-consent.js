@@ -66,7 +66,7 @@ class CookieConsent {
       cookieConsentWindow.insertBefore(listContainer, footer);
   
       for (let i = 0; i < this.numberOfListItems; ++i) {
-        this.createListItem(counter, listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
+        this.createListItem(i, listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
   }
