@@ -7,6 +7,7 @@ class CookieConsent {
     this.privacyPolicyButtonCss = "background-color: white;text-decoration: none;border-radius: 4px;padding-top: 4px;padding-bottom: 4px;padding-left: 10px;padding-right: 10px;";
     this.footerCss = "border-top: 1px solid #b3b3b3;display: flex;height: 60px;line-height:60px;position: absolute;width: 100%;bottom: 0;";
     this.fullSizeContainerCss = "width: 100%;height: 100vh;position: absolute;margin: -8px;background-color: rgba(0, 0, 0, 0.8);";
+    this.acceptPrivacyPolicyButtonCss = "margin-left: 20px;padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;";
     this.checkCookie();
   }
 
@@ -75,6 +76,7 @@ class CookieConsent {
     listItemLi = document.createElement('div');
     listItemLi.style.display = "flex";
     listItemLi.style.marginBottom = "10px";
+    listItemLi.style.lineHeight = "30px";
     nameDivSection = document.createElement('div');
     nameDivSection.style.width = "55%";
     nameDivSection.innerHTML = name;
@@ -87,6 +89,7 @@ class CookieConsent {
     privacyPolicyLink.href = url;
     linkPrivacyPolicyDivSection.appendChild(privacyPolicyLink);
     acceptButton = document.createElement('button');
+    acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
     acceptButton.innerHTML = 'Accept';
     listItemLi.appendChild(nameDivSection);
     listItemLi.appendChild(linkPrivacyPolicyDivSection);
