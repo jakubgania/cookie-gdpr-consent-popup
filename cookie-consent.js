@@ -95,11 +95,11 @@ class CookieConsent {
     acceptButton.innerHTML = 'Accept';
     acceptButton.setAttribute("id", `accept-button-${counter}`);
     acceptButton.addEventListener('click', () => {
-      this.addVendorToList(counter);
-      
       if ("lawngreen" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
+        this.removeVendorFromList(index);
         document.getElementById(`accept-button-${counter}`).style.backgroundColor = "";
       } else {
+        this.addVendorToList(counter);
         document.getElementById(`accept-button-${counter}`).style.backgroundColor = "lawngreen";
       }
     });
@@ -113,6 +113,11 @@ class CookieConsent {
   addVendorToList(index) {
     // alert('vendor index - ' + index);
     this.listOfAcceptedVendors.push(this.listOfVendors[index]);
+    console.log(this.listOfAcceptedVendors);
+  }
+
+  removeVendorFromList(index) {
+    this.listOfAcceptedVendors.slice(index, 1);
     console.log(this.listOfAcceptedVendors);
   }
 
