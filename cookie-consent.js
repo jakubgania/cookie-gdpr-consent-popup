@@ -96,7 +96,7 @@ class CookieConsent {
     acceptButton.setAttribute("id", `accept-button-${counter}`);
     acceptButton.addEventListener('click', () => {
       if ("lawngreen" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
-        this.removeVendorFromList(index);
+        this.removeVendorFromList(counter);
         document.getElementById(`accept-button-${counter}`).style.backgroundColor = "";
       } else {
         this.addVendorToList(counter);
