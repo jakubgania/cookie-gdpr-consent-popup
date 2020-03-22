@@ -1,7 +1,7 @@
 class CookieConsent {
   constructor() {
     this.numberOfListItems = 20;
-    this.cookieExpirationTime = 1;
+    this.cookieExpiryTimeInDays = 1;
     this.listOfVendors = [];
     this.listOfAcceptedVendors = [];
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
@@ -143,7 +143,7 @@ class CookieConsent {
     button.innerHTML = name;
     button.onclick = () => {
       if (cookie) {
-        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, this.cookieExpirationTime);
+        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, this.cookieExpiryTimeInDays);
       }
 
       this.enableScroll();
