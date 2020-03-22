@@ -117,7 +117,7 @@ class CookieConsent {
   }
 
   removeVendorFromList(index) {
-    this.listOfAcceptedVendors.slice(index, 1);
+    this.listOfAcceptedVendors.splice(index, 1);
     console.log(this.listOfAcceptedVendors);
   }
 
