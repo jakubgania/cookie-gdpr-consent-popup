@@ -93,6 +93,9 @@ class CookieConsent {
     acceptButton = document.createElement('button');
     acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
     acceptButton.innerHTML = 'Accept';
+    acceptButton.addEventListener('click', function(){
+      alert('click');
+    });
     listItemLi.appendChild(nameDivSection);
     listItemLi.appendChild(linkPrivacyPolicyDivSection);
     listItemLi.appendChild(acceptButton);
