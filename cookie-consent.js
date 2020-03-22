@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
+    this.headerCss = "text-align: center;font-size: 20px;border-bottom: 1px solid #b3b3b3;";
     this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; height: 800px; background-color: #f2f2f2;"
     this.buttonCss = "font-size: 18px;padding-left:30px;padding-right:30px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
     this.privacyPolicyButtonCss = "background-color: white;text-decoration: none;border-radius: 4px;padding-top: 4px;padding-bottom: 4px;padding-left: 10px;padding-right: 10px;";
@@ -31,9 +32,7 @@ class CookieConsent {
 
   createHeader() {
     let header = document.createElement('div');
-    header.style.textAlign = "center";
-    header.style.fontSize = "20px";
-    header.style.borderBottom = "1px solid #b3b3b3";
+    header.style.cssText = this.headerCss;
     header.setAttribute("id", "header");
     document.getElementById('cookie-consent-window').appendChild(header);
     let para = document.createElement("p");
