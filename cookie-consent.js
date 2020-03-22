@@ -92,7 +92,7 @@ class CookieConsent {
       this.closeWindow();
       return false;
     };
-    elementRejectButtonSection.appendChild(btn);
+    elementRejectButtonSection.appendChild(button);
   }
 
   createAcceptButton() {
@@ -119,7 +119,7 @@ class CookieConsent {
     footer.style.lineHeight = "60px";
     footer.setAttribute("id", "footer");
     document.getElementById('cookie-consent-window').appendChild(footer);
-    
+
     let element = document.getElementById("footer");
     let rejectSection = document.createElement('div');
     rejectSection.setAttribute("id", "reject-section");
