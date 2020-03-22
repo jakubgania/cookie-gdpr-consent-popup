@@ -43,6 +43,8 @@ class CookieConsent {
       listOfVendors = data.vendors;
   
       let listContainer = document.createElement('div');
+      listContainer.setAttribute("id", "vendors-list");
+      
       let listElement = document.createElement('ul');
   
       document.getElementById('cookie-consent-window').appendChild(listContainer);
