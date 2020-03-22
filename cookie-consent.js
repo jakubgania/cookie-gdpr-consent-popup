@@ -66,12 +66,18 @@ class CookieConsent {
       cookieConsentWindow.insertBefore(listContainer, footer);
   
       for (let counter = 0; counter < this.numberOfListItems; ++counter) {
-        this.createListItem(counter, listElement, this.listOfVendors[counter].name, this.listOfVendors[counter].policyUrl);
+        this.createListItem(
+          counter,
+          listElement,
+          this.listOfVendors[counter].id,
+          this.listOfVendors[counter].name,
+          this.listOfVendors[counter].policyUrl
+        );
       }
     });
   }
 
-  createListItem(counter, listElement, name, url) {
+  createListItem(counter, listElement, id, name, url) {
     let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText, acceptButton;
 
     listItem = document.createElement('li');
@@ -96,7 +102,7 @@ class CookieConsent {
     acceptButton.setAttribute("id", `accept-button-${counter}`);
     acceptButton.addEventListener('click', () => {
       if ("lawngreen" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
-        this.removeVendorFromList(counter);
+        this.removeVendorFromList(id);
         document.getElementById(`accept-button-${counter}`).style.backgroundColor = "";
       } else {
         this.addVendorToList(counter);
@@ -119,7 +125,12 @@ class CookieConsent {
 
   removeVendorFromList(index) {
     console.log(index);
-    this.listOfAcceptedVendors.splice(index, 1);
+
+    let removeIndex = this.listOfAcceptedVendors.map((item) => {
+      return item.id
+    }).indexOf(index);
+
+    this.listOfAcceptedVendors.splice(removeIndex, 1);
     console.log(this.listOfAcceptedVendors);
   }
 
