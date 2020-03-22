@@ -50,6 +50,8 @@ class CookieConsent {
       listOfVendors = data.vendors;
   
       let listContainer = document.createElement('div');
+      listContainer.style.overflowY = "scroll";
+      listContainer.style.height = "676px";
       listContainer.setAttribute("id", "vendors-list");
 
       let listElement = document.createElement('ul');
