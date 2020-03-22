@@ -95,15 +95,18 @@ class CookieConsent {
     acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
     acceptButton.innerHTML = 'Accept';
     acceptButton.setAttribute("id", `accept-button-${counter}`);
-    acceptButton.addEventListener('click', function(ev){
-      alert('click' + counter);
-      console.log(ev);
+    acceptButton.addEventListener('click', function() {
+      this.addVendorToList(counter);
     });
     listItemLi.appendChild(nameDivSection);
     listItemLi.appendChild(linkPrivacyPolicyDivSection);
     listItemLi.appendChild(acceptButton);
     listItem.appendChild(listItemLi);
     listElement.appendChild(listItem);
+  }
+
+  addVendorToList(index) {
+    alert('vendor index - ' + index);
   }
 
   createButton(id, name, cookie) {
