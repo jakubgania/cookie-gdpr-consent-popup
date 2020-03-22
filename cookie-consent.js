@@ -11,7 +11,6 @@ class CookieConsent {
     this.footerCss = "border-top: 1px solid #b3b3b3;display: flex;height: 60px;line-height:60px;position: absolute;width: 100%;bottom: 0;";
     this.fullSizeContainerCss = "width: 100%;height: 100vh;position: absolute;margin: -8px;background-color: rgba(0, 0, 0, 0.8);";
     this.acceptPrivacyPolicyButtonCss = "margin-left: 20px;padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;border: none;";
-    this.checkCookie();
   }
 
   disableScroll() {
@@ -143,7 +142,7 @@ class CookieConsent {
     button.innerHTML = name;
     button.onclick = () => {
       if (cookie) {
-        this.setCookie('accept', this.listOfAcceptedVendors, 3);
+        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, 3);
       }
 
       this.enableScroll();
@@ -169,7 +168,7 @@ class CookieConsent {
     element.appendChild(rejectSection);
     element.appendChild(acceptSection);
 
-    this.createButton("reject-section", "Reject", false);
+    this.createButton("reject-section", "Reject", true);
     this.createButton("accept-button", "Accept", true);
   }
 
@@ -213,7 +212,7 @@ class CookieConsent {
   }
   
   checkCookie() {
-    let cookieValue = this.getCookie('example');
+    let cookieValue = this.getCookie('gdpr-consent');
     console.log(cookieValue);
 
     // if cookie empty render else not render
@@ -227,7 +226,8 @@ class CookieConsent {
 
   render() {
     if (!this.isHttps()) return false;
-    // if (!this.checkCookie()) return false;
+    if (!this.checkCookie()) return false;
+    // this.checkCookie();
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
