@@ -112,11 +112,13 @@ class CookieConsent {
 
   addVendorToList(index) {
     // alert('vendor index - ' + index);
+    console.log(index);
     this.listOfAcceptedVendors.push(this.listOfVendors[index]);
     console.log(this.listOfAcceptedVendors);
   }
 
   removeVendorFromList(index) {
+    console.log(index);
     this.listOfAcceptedVendors.splice(index, 1);
     console.log(this.listOfAcceptedVendors);
   }
