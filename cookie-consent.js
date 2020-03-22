@@ -66,12 +66,12 @@ class CookieConsent {
       cookieConsentWindow.insertBefore(listContainer, footer);
   
       for (let i = 0; i < this.numberOfListItems; ++i) {
-        this.createListItem(listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
+        this.createListItem(counter, listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
   }
 
-  createListItem(listElement, name, url) {
+  createListItem(counter, listElement, name, url) {
     let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText, acceptButton;
 
     listItem = document.createElement('li');
@@ -93,6 +93,7 @@ class CookieConsent {
     acceptButton = document.createElement('button');
     acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
     acceptButton.innerHTML = 'Accept';
+    acceptButton.setAttribute("id", `accept-button-${counter}`);
     acceptButton.addEventListener('click', function(){
       alert('click');
     });
