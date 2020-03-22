@@ -117,21 +117,15 @@ class CookieConsent {
   }
 
   addVendorToList(index) {
-    // alert('vendor index - ' + index);
-    console.log(index);
     this.listOfAcceptedVendors.push(this.listOfVendors[index]);
-    console.log(this.listOfAcceptedVendors);
   }
 
   removeVendorFromList(index) {
-    console.log(index);
-
     let removeIndex = this.listOfAcceptedVendors.map((item) => {
       return item.id
     }).indexOf(index);
 
     this.listOfAcceptedVendors.splice(removeIndex, 1);
-    console.log(this.listOfAcceptedVendors);
   }
 
   createButton(id, name, cookie) {
@@ -185,7 +179,6 @@ class CookieConsent {
   }
 
   setCookie(cookieName, cookieValue, expire) {
-    console.log('cookie');
     let d = new Date();
     d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
     let expires ="expires=" + d.toGMTString();
@@ -213,7 +206,6 @@ class CookieConsent {
   
   checkCookie() {
     let cookieValue = this.getCookie('gdpr-consent');
-    console.log(cookieValue);
 
     if (cookieValue != "") {
       return true;
