@@ -93,37 +93,6 @@ class CookieConsent {
     listElement.appendChild(listItem);
   }
 
-  createRejectButton() {
-    let elementRejectButtonSection = document.getElementById("reject-section");
-    elementRejectButtonSection.style.cssText = "width: 50%;text-align: center;";
-
-    let button = document.createElement('button');
-    button.style.cssText = this.buttonCss;
-    button.innerHTML = 'Reject';
-    button.onclick = () => {
-      this.enableScroll();
-      this.closeWindow();
-      return false;
-    };
-    elementRejectButtonSection.appendChild(button);
-  }
-
-  createAcceptButton() {
-    let elementAcceptButtonSection = document.getElementById("accept-button");
-    elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
-
-    let button = document.createElement('button');
-    button.style.cssText = this.buttonCss;
-    button.innerHTML = 'Accept';
-    button.onclick = () => {
-      this.setCookie('accept', true, 3);
-      this.enableScroll();
-      this.closeWindow();
-      return false;
-    };
-    elementAcceptButtonSection.appendChild(button);
-  }
-
   createButton(id, name, cookie) {
     let elementAcceptButtonSection = document.getElementById(id);
     elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
