@@ -190,7 +190,7 @@ class CookieConsent {
     // d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
     d.setTime(d.getTime() + (expire * 60 * 1000));
     let expires ="expires=" + d.toGMTString();
-    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+    document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
   }
 
   getCookie(cookieName) {
