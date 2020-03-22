@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
     this.numberOfListItems = 20;
+    this.listOfAcceptedVendors = [];
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
     this.headerCss = "text-align: center;font-size: 20px;border-bottom: 1px solid #b3b3b3;";
     this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; height: 800px; background-color: #fff;"
@@ -95,7 +96,7 @@ class CookieConsent {
     acceptButton.innerHTML = 'Accept';
     acceptButton.setAttribute("id", `accept-button-${counter}`);
     acceptButton.addEventListener('click', function(ev){
-      alert('click', counter);
+      alert('click' + counter);
       console.log(ev);
     });
     listItemLi.appendChild(nameDivSection);
