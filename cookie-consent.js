@@ -5,6 +5,7 @@ class CookieConsent {
     this.buttonCss = "font-size: 18px;padding-left:30px;padding-right:30px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
     this.privacyPolicyButtonCss = "background-color: white;text-decoration: none;border-radius: 4px;padding-top: 4px;padding-bottom: 4px;padding-left: 10px;padding-right: 10px;";
     this.footerCss = "border-top: 1px solid #b3b3b3;display: flex;height: 60px;line-height:60px;position: absolute;width: 100%;bottom: 0;";
+    this.fullSizeContainerCss = "width: 100%;height: 100vh;position: absolute;margin: -8px;background-color: rgba(0, 0, 0, 0.8);";
     this.checkCookie();
   }
 
@@ -18,6 +19,8 @@ class CookieConsent {
 
   createWindow() {
     let fullSizeContainer = document.createElement('div');
+    fullSizeContainer.style.cssText = this.fullSizeContainerCss;
+
     let cookieWindowContainer = document.createElement('div');
     cookieWindowContainer.style.cssText = this.windowCss;
     cookieWindowContainer.setAttribute("id", "cookie-consent-window");
