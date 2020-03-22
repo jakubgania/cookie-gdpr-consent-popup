@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
     this.numberOfListItems = 20;
+    this.listOfVendors = [];
     this.listOfAcceptedVendors = [];
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
     this.headerCss = "text-align: center;font-size: 20px;border-bottom: 1px solid #b3b3b3;";
@@ -47,10 +48,8 @@ class CookieConsent {
   }
 
   createList() {
-    let listOfVendors = [];
-
     this.getVendorsList().then((data) => {
-      listOfVendors = data.vendors;
+      this.listOfVendors = data.vendors;
   
       let listContainer = document.createElement('div');
       listContainer.style.overflowY = "scroll";
@@ -66,8 +65,8 @@ class CookieConsent {
       let footer = document.getElementById('footer');
       cookieConsentWindow.insertBefore(listContainer, footer);
   
-      for (let i = 0; i < this.numberOfListItems; ++i) {
-        this.createListItem(i, listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
+      for (let counter = 0; counter < this.numberOfListItems; ++counter) {
+        this.createListItem(counter, listElement, this.listOfVendors[i].name, this.listOfVendors[i].policyUrl);
       }
     });
   }
