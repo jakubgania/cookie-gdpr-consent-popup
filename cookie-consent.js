@@ -46,7 +46,7 @@ class CookieConsent {
   createList() {
     let listOfVendors = [];
 
-    this.getVendorList().then((data) => {
+    this.getVendorsList().then((data) => {
       listOfVendors = data.vendors;
   
       let listContainer = document.createElement('div');
@@ -56,9 +56,10 @@ class CookieConsent {
   
       document.getElementById('cookie-consent-window').appendChild(listContainer);
       listContainer.appendChild(listElement);
-      let xmp = document.getElementById('cookie-consent-window');
+
+      let cookieConsentWindow = document.getElementById('cookie-consent-window');
       let footer = document.getElementById('footer');
-      xmp.insertBefore(listContainer, footer);
+      cookieConsentWindow.insertBefore(listContainer, footer);
 
       let numberOfListItems = 20;
   
@@ -123,6 +124,26 @@ class CookieConsent {
     elementAcceptButtonSection.appendChild(button);
   }
 
+  createButton(id, name, cookie) {
+    let elementAcceptButtonSection = document.getElementById(id);
+    elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
+
+    let button = document.createElement('button');
+    button.style.cssText = this.buttonCss;
+    button.innerHTML = name;
+    button.onclick = () => {
+      if (cookie) {
+        this.setCookie('accept', true, 3);
+      }
+
+      this.enableScroll();
+      this.closeWindow();
+
+      return false;
+    };
+    elementAcceptButtonSection.appendChild(button);
+  }
+
   createFooter() {
     let footer = document.createElement('div');
     footer.style.cssText = this.footerCss;
@@ -138,8 +159,8 @@ class CookieConsent {
     element.appendChild(rejectSection);
     element.appendChild(acceptSection);
 
-    this.createRejectButton();
-    this.createAcceptButton();
+    this.createButton("reject-section", "Reject", false);
+    this.createButton("accept-button", "Accept", true);
   }
 
   closeWindow() {
@@ -209,7 +230,7 @@ class CookieConsent {
     }, 100);
   }
 
-  async getVendorList() {
+  async getVendorsList() {
     const response = await fetch(this.vendrosListURL);
     const json = await response.json();
     return json;
