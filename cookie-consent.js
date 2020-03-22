@@ -106,6 +106,8 @@ class CookieConsent {
 
   addVendorToList(index) {
     alert('vendor index - ' + index);
+    this.listOfAcceptedVendors.push(this.listOfVendors[index]);
+    console.log(this.listOfAcceptedVendors);
   }
 
   createButton(id, name, cookie) {
