@@ -183,6 +183,7 @@ class CookieConsent {
   }
 
   render() {
+    console.log(this.isHttps());
     if (!this.isHttps()) return false;
     // if (!this.checkCookie()) return false;
 
