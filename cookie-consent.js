@@ -183,7 +183,7 @@ class CookieConsent {
   }
 
   render() {
-    // if (!this.isHttps()) return false;
+    if (!this.isHttps()) return false;
     // if (!this.checkCookie()) return false;
 
     let stateCheck = setInterval(() => {
