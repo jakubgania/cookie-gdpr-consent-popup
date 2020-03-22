@@ -83,10 +83,11 @@ class CookieConsent {
   createRejectButton() {
     let elementRejectButtonSection = document.getElementById("reject-section");
     elementRejectButtonSection.style.cssText = "width: 50%;text-align: center;";
-    let btn = document.createElement('button');
-    btn.style.cssText = this.buttonCss;
-    btn.innerHTML = 'Reject';
-    btn.onclick = () => {
+
+    let button = document.createElement('button');
+    button.style.cssText = this.buttonCss;
+    button.innerHTML = 'Reject';
+    button.onclick = () => {
       this.enableScroll();
       this.closeWindow();
       return false;
@@ -97,6 +98,7 @@ class CookieConsent {
   createAcceptButton() {
     let elementAcceptButtonSection = document.getElementById("accept-button");
     elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
+
     let button = document.createElement('button');
     button.style.cssText = this.buttonCss;
     button.innerHTML = 'Accept';
@@ -117,6 +119,7 @@ class CookieConsent {
     footer.style.lineHeight = "60px";
     footer.setAttribute("id", "footer");
     document.getElementById('cookie-consent-window').appendChild(footer);
+    
     let element = document.getElementById("footer");
     let rejectSection = document.createElement('div');
     rejectSection.setAttribute("id", "reject-section");
