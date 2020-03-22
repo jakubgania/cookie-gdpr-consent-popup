@@ -219,14 +219,13 @@ class CookieConsent {
     if (cookieValue != "") {
       return true;
     } else {
-      // this.setCookie('example', true, 3);
       return false;
     }
   }
 
   render() {
     if (!this.isHttps()) return false;
-    if (!this.checkCookie()) return false;
+    if (this.checkCookie()) return false;
     // this.checkCookie();
 
     let stateCheck = setInterval(() => {
