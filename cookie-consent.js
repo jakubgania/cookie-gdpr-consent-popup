@@ -69,7 +69,7 @@ class CookieConsent {
   }
 
   createListItem(listElement, name, url) {
-    let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText;
+    let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText, acceptButton;
 
     listItem = document.createElement('li');
     listItemLi = document.createElement('div');
@@ -86,8 +86,11 @@ class CookieConsent {
     privacyPolicyLink.setAttribute('target', '_blank');
     privacyPolicyLink.href = url;
     linkPrivacyPolicyDivSection.appendChild(privacyPolicyLink);
+    acceptButton = document.createElement('button');
+    acceptButton.innerHTML = 'Accept';
     listItemLi.appendChild(nameDivSection);
     listItemLi.appendChild(linkPrivacyPolicyDivSection);
+    listItemLi.appendChild(acceptButton);
     listItem.appendChild(listItemLi);
     listElement.appendChild(listItem);
   }
