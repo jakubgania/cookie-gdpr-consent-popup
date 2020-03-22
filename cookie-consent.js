@@ -44,11 +44,14 @@ class CookieConsent {
   
       let listContainer = document.createElement('div');
       listContainer.setAttribute("id", "vendors-list");
-      
+
       let listElement = document.createElement('ul');
   
       document.getElementById('cookie-consent-window').appendChild(listContainer);
       listContainer.appendChild(listElement);
+      let xmp = document.getElementById('cookie-consent-window');
+      let footer = document.getElementById('footer');
+      listContainer.insertBefore(listContainer, footer);
 
       let numberOfListItems = 20;
   
