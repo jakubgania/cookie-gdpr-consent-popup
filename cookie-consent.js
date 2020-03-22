@@ -17,10 +17,13 @@ class CookieConsent {
   }
 
   createWindow() {
+    let fullSizeContainer = document.createElement('div');
     let cookieWindowContainer = document.createElement('div');
     cookieWindowContainer.style.cssText = this.windowCss;
     cookieWindowContainer.setAttribute("id", "cookie-consent-window");
-    document.getElementsByTagName('body')[0].appendChild(cookieWindowContainer);
+
+    fullSizeContainer.appendChild(cookieWindowContainer)
+    document.getElementsByTagName('body')[0].appendChild(fullSizeContainer);
   }
 
   createHeader() {
