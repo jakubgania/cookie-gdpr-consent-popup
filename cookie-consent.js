@@ -3,7 +3,7 @@ class CookieConsent {
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
     this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; height: 800px; background-color: #f2f2f2;"
     this.buttonCss = "font-size: 18px;padding-left:30px;padding-right:30px;padding-top:4px;padding-bottom:4px;border:none;outline:none;background-color: #cccccc;";
-    this.privacyPolicyButtonCss = "background-color: white;text-decoration: none;border-radius: 4px;padding: 4px;";
+    this.privacyPolicyButtonCss = "background-color: white;text-decoration: none;border-radius: 4px;padding-top: 4px;padding-bottom: 4px;padding-left: 10px;padding-right: 10px;";
     this.checkCookie();
   }
 
@@ -57,26 +57,26 @@ class CookieConsent {
   }
 
   createListItem(listElement, name, url) {
-    let listItem, test, x1, x2, alink, alinkText;
+    let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText;
 
     listItem = document.createElement('li');
-    test = document.createElement('div');
-    test.style.display = "flex";
-    test.style.marginBottom = "10px";
-    x1 = document.createElement('div');
-    x1.style.width = "50%";
-    x1.innerHTML = name;
-    x2 = document.createElement('div');
-    alink = document.createElement('a');
-    alink.style.cssText = this.privacyPolicyButtonCss;
-    alinkText = document.createTextNode('privacy policy');
-    alink.appendChild(alinkText);
-    alink.setAttribute('target', '_blank');
-    alink.href = url;
-    x2.appendChild(alink);
-    test.appendChild(x1);
-    test.appendChild(x2);
-    listItem.appendChild(test);
+    listItemLi = document.createElement('div');
+    listItemLi.style.display = "flex";
+    listItemLi.style.marginBottom = "10px";
+    nameDivSection = document.createElement('div');
+    nameDivSection.style.width = "55%";
+    nameDivSection.innerHTML = name;
+    linkPrivacyPolicyDivSection = document.createElement('div');
+    privacyPolicyLink = document.createElement('a');
+    privacyPolicyLink.style.cssText = this.privacyPolicyButtonCss;
+    linkText = document.createTextNode('privacy policy');
+    privacyPolicyLink.appendChild(linkText);
+    privacyPolicyLink.setAttribute('target', '_blank');
+    privacyPolicyLink.href = url;
+    linkPrivacyPolicyDivSection.appendChild(privacyPolicyLink);
+    listItemLi.appendChild(nameDivSection);
+    listItemLi.appendChild(linkPrivacyPolicyDivSection);
+    listItem.appendChild(listItemLi);
     listElement.appendChild(listItem);
   }
 
