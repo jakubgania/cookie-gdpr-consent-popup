@@ -142,7 +142,7 @@ class CookieConsent {
   closeWindow() {
     let element = document.getElementById("cookie-consent-window");
     let fullSizeContainer = document.getElementById("full-size-container");
-    fullSizeContainer.style.cssText = "";
+    fullSizeContainer.style.display = "none";
     element.style.display = "none";
   }
 
