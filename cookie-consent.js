@@ -1,5 +1,6 @@
 class CookieConsent {
   constructor() {
+    this.numberOfListItems = 20;
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
     this.headerCss = "text-align: center;font-size: 20px;border-bottom: 1px solid #b3b3b3;";
     this.windowCss = "position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; height: 800px; background-color: #f2f2f2;"
@@ -62,10 +63,8 @@ class CookieConsent {
       let cookieConsentWindow = document.getElementById('cookie-consent-window');
       let footer = document.getElementById('footer');
       cookieConsentWindow.insertBefore(listContainer, footer);
-
-      let numberOfListItems = 20;
   
-      for (let i = 0; i < numberOfListItems; ++i) {
+      for (let i = 0; i < this.numberOfListItems; ++i) {
         this.createListItem(listElement, listOfVendors[i].name, listOfVendors[i].policyUrl);
       }
     });
@@ -80,12 +79,12 @@ class CookieConsent {
     listItemLi.style.marginBottom = "10px";
     listItemLi.style.lineHeight = "30px";
     nameDivSection = document.createElement('div');
-    nameDivSection.style.width = "55%";
+    nameDivSection.style.width = "58%";
     nameDivSection.innerHTML = name;
     linkPrivacyPolicyDivSection = document.createElement('div');
     privacyPolicyLink = document.createElement('a');
     privacyPolicyLink.style.cssText = this.privacyPolicyButtonCss;
-    linkText = document.createTextNode('privacy policy');
+    linkText = document.createTextNode('Privacy policy');
     privacyPolicyLink.appendChild(linkText);
     privacyPolicyLink.setAttribute('target', '_blank');
     privacyPolicyLink.href = url;
