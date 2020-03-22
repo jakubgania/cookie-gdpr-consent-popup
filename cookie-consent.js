@@ -143,7 +143,7 @@ class CookieConsent {
     button.innerHTML = name;
     button.onclick = () => {
       if (cookie) {
-        this.setCookie('accept', true, this.listOfAcceptedVendors);
+        this.setCookie('accept', this.listOfAcceptedVendors, 3);
       }
 
       this.enableScroll();
