@@ -1,6 +1,7 @@
 class CookieConsent {
   constructor() {
     this.numberOfListItems = 20;
+    this.cookieExpirationTime = 1;
     this.listOfVendors = [];
     this.listOfAcceptedVendors = [];
     this.vendrosListURL = "https://vendorlist.consensu.org/vendorlist.json";
@@ -142,7 +143,7 @@ class CookieConsent {
     button.innerHTML = name;
     button.onclick = () => {
       if (cookie) {
-        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, 3);
+        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, this.cookieExpirationTime);
       }
 
       this.enableScroll();
@@ -186,8 +187,7 @@ class CookieConsent {
   setCookie(cookieName, cookieValue, expire) {
     console.log('cookie');
     let d = new Date();
-    // d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
-    d.setTime(d.getTime() + (expire * 60 * 1000));
+    d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
     let expires ="expires=" + d.toGMTString();
     document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
   }
@@ -215,7 +215,6 @@ class CookieConsent {
     let cookieValue = this.getCookie('gdpr-consent');
     console.log(cookieValue);
 
-    // if cookie empty render else not render
     if (cookieValue != "") {
       return true;
     } else {
@@ -226,7 +225,6 @@ class CookieConsent {
   render() {
     if (!this.isHttps()) return false;
     if (this.checkCookie()) return false;
-    // this.checkCookie();
 
     let stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
