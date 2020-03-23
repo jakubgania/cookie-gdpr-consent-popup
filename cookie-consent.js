@@ -181,9 +181,9 @@ class CookieConsent {
   }
 
   setCookie(cookieName, cookieValue, expire) {
-    let d = new Date();
-    d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
-    let expires ="expires=" + d.toGMTString();
+    let dateObject = new Date();
+    dateObject.setTime(dateObject.getTime() + (expire * 24 * 60 * 60 * 1000));
+    let expires ="expires=" + dateObject.toGMTString();
     document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
   }
 
@@ -236,6 +236,7 @@ class CookieConsent {
   async getVendorsList() {
     const response = await fetch(this.vendrosListURL);
     const json = await response.json();
+
     return json;
   }
 }
