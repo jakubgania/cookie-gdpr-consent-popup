@@ -1,13 +1,5 @@
-"use strict";
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var CookieConsent = function () {
-  function CookieConsent() {
-    _classCallCheck(this, CookieConsent);
-
+class CookieConsent {
+  constructor() {
     this.numberOfListItems = 20;
     this.cookieExpiryTimeInDays = 1;
     this.listOfVendors = [];
@@ -22,258 +14,233 @@ var CookieConsent = function () {
     this.acceptPrivacyPolicyButtonCss = "margin-left: 20px;padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 4px;border: none;";
   }
 
-  _createClass(CookieConsent, [{
-    key: "disableScroll",
-    value: function disableScroll() {
-      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+  disableScroll() {
+    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+  }
+
+  enableScroll() {
+    document.getElementsByTagName('html')[0].style.overflow = 'auto';
+  }
+
+  createWindow() {
+    let fullSizeContainer = document.createElement('div');
+    fullSizeContainer.setAttribute("id", "full-size-container");
+    fullSizeContainer.style.cssText = this.fullSizeContainerCss;
+
+    let cookieWindowContainer = document.createElement('div');
+    cookieWindowContainer.style.cssText = this.windowCss;
+    cookieWindowContainer.setAttribute("id", "cookie-consent-window");
+
+    fullSizeContainer.appendChild(cookieWindowContainer)
+    document.getElementsByTagName('body')[0].appendChild(fullSizeContainer);
+  }
+
+  createHeader() {
+    let header = document.createElement('div');
+    header.style.cssText = this.headerCss;
+    header.setAttribute("id", "header");
+    document.getElementById('cookie-consent-window').appendChild(header);
+    let para = document.createElement("p");
+    let node = document.createTextNode("GDPR consent");
+    para.appendChild(node);
+    let element = document.getElementById("header");
+    element.appendChild(para);
+  }
+
+  createList() {
+    this.getVendorsList().then((data) => {
+      this.listOfVendors = data.vendors;
+  
+      let listContainer = document.createElement('div');
+      listContainer.style.overflowY = "scroll";
+      listContainer.style.height = "676px";
+      listContainer.setAttribute("id", "vendors-list");
+
+      let listElement = document.createElement('ul');
+  
+      document.getElementById('cookie-consent-window').appendChild(listContainer);
+      listContainer.appendChild(listElement);
+
+      let cookieConsentWindow = document.getElementById('cookie-consent-window');
+      let footer = document.getElementById('footer');
+      cookieConsentWindow.insertBefore(listContainer, footer);
+  
+      for (let counter = 0; counter < this.numberOfListItems; ++counter) {
+        this.createListItem(
+          counter,
+          listElement,
+          this.listOfVendors[counter].id,
+          this.listOfVendors[counter].name,
+          this.listOfVendors[counter].policyUrl
+        );
+      }
+    });
+  }
+
+  createListItem(counter, listElement, id, name, url) {
+    let listItem, listItemLi, nameDivSection, linkPrivacyPolicyDivSection, privacyPolicyLink, linkText, acceptButton;
+
+    listItem = document.createElement('li');
+    listItemLi = document.createElement('div');
+    listItemLi.style.display = "flex";
+    listItemLi.style.marginBottom = "10px";
+    listItemLi.style.lineHeight = "30px";
+    nameDivSection = document.createElement('div');
+    nameDivSection.style.width = "58%";
+    nameDivSection.innerHTML = name;
+    linkPrivacyPolicyDivSection = document.createElement('div');
+    privacyPolicyLink = document.createElement('a');
+    privacyPolicyLink.style.cssText = this.privacyPolicyButtonCss;
+    linkText = document.createTextNode('Privacy policy');
+    privacyPolicyLink.appendChild(linkText);
+    privacyPolicyLink.setAttribute('target', '_blank');
+    privacyPolicyLink.href = url;
+    linkPrivacyPolicyDivSection.appendChild(privacyPolicyLink);
+    acceptButton = document.createElement('button');
+    acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
+    acceptButton.innerHTML = 'Accept';
+    acceptButton.setAttribute("id", `accept-button-${counter}`);
+    acceptButton.addEventListener('click', () => {
+      this.switchAcceptPrivacyPolicyButton(id, counter);
+    });
+    listItemLi.appendChild(nameDivSection);
+    listItemLi.appendChild(linkPrivacyPolicyDivSection);
+    listItemLi.appendChild(acceptButton);
+    listItem.appendChild(listItemLi);
+    listElement.appendChild(listItem);
+  }
+
+  switchAcceptPrivacyPolicyButton(id, counter) {
+    if ("lawngreen" === document.getElementById(`accept-button-${counter}`).style.backgroundColor) {
+      this.removeVendorFromList(id);
+      document.getElementById(`accept-button-${counter}`).style.backgroundColor = "";
+    } else {
+      this.addVendorToList(counter);
+      document.getElementById(`accept-button-${counter}`).style.backgroundColor = "lawngreen";
     }
-  }, {
-    key: "enableScroll",
-    value: function enableScroll() {
-      document.getElementsByTagName('html')[0].style.overflow = 'auto';
-    }
-  }, {
-    key: "createWindow",
-    value: function createWindow() {
-      var fullSizeContainer = document.createElement('div');
-      fullSizeContainer.setAttribute("id", "full-size-container");
-      fullSizeContainer.style.cssText = this.fullSizeContainerCss;
+  }
 
-      var cookieWindowContainer = document.createElement('div');
-      cookieWindowContainer.style.cssText = this.windowCss;
-      cookieWindowContainer.setAttribute("id", "cookie-consent-window");
+  addVendorToList(index) {
+    this.listOfAcceptedVendors.push(this.listOfVendors[index]);
+  }
 
-      fullSizeContainer.appendChild(cookieWindowContainer);
-      document.getElementsByTagName('body')[0].appendChild(fullSizeContainer);
-    }
-  }, {
-    key: "createHeader",
-    value: function createHeader() {
-      var header = document.createElement('div');
-      header.style.cssText = this.headerCss;
-      header.setAttribute("id", "header");
-      document.getElementById('cookie-consent-window').appendChild(header);
-      var para = document.createElement("p");
-      var node = document.createTextNode("GDPR consent");
-      para.appendChild(node);
-      var element = document.getElementById("header");
-      element.appendChild(para);
-    }
-  }, {
-    key: "createList",
-    value: function createList() {
-      var _this = this;
+  removeVendorFromList(index) {
+    let removeIndex = this.listOfAcceptedVendors.map((item) => {
+      return item.id
+    }).indexOf(index);
 
-      this.getVendorsList().then(function (data) {
-        _this.listOfVendors = data.vendors;
+    this.listOfAcceptedVendors.splice(removeIndex, 1);
+  }
 
-        var listContainer = document.createElement('div');
-        listContainer.style.overflowY = "scroll";
-        listContainer.style.height = "676px";
-        listContainer.setAttribute("id", "vendors-list");
+  createButton(id, name, cookie) {
+    let elementAcceptButtonSection = document.getElementById(id);
+    elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
 
-        var listElement = document.createElement('ul');
-
-        document.getElementById('cookie-consent-window').appendChild(listContainer);
-        listContainer.appendChild(listElement);
-
-        var cookieConsentWindow = document.getElementById('cookie-consent-window');
-        var footer = document.getElementById('footer');
-        cookieConsentWindow.insertBefore(listContainer, footer);
-
-        for (var counter = 0; counter < _this.numberOfListItems; ++counter) {
-          _this.createListItem(counter, listElement, _this.listOfVendors[counter].id, _this.listOfVendors[counter].name, _this.listOfVendors[counter].policyUrl);
-        }
-      });
-    }
-  }, {
-    key: "createListItem",
-    value: function createListItem(counter, listElement, id, name, url) {
-      var _this2 = this;
-
-      var listItem = void 0,
-          listItemLi = void 0,
-          nameDivSection = void 0,
-          linkPrivacyPolicyDivSection = void 0,
-          privacyPolicyLink = void 0,
-          linkText = void 0,
-          acceptButton = void 0;
-
-      listItem = document.createElement('li');
-      listItemLi = document.createElement('div');
-      listItemLi.style.display = "flex";
-      listItemLi.style.marginBottom = "10px";
-      listItemLi.style.lineHeight = "30px";
-      nameDivSection = document.createElement('div');
-      nameDivSection.style.width = "58%";
-      nameDivSection.innerHTML = name;
-      linkPrivacyPolicyDivSection = document.createElement('div');
-      privacyPolicyLink = document.createElement('a');
-      privacyPolicyLink.style.cssText = this.privacyPolicyButtonCss;
-      linkText = document.createTextNode('Privacy policy');
-      privacyPolicyLink.appendChild(linkText);
-      privacyPolicyLink.setAttribute('target', '_blank');
-      privacyPolicyLink.href = url;
-      linkPrivacyPolicyDivSection.appendChild(privacyPolicyLink);
-      acceptButton = document.createElement('button');
-      acceptButton.style.cssText = this.acceptPrivacyPolicyButtonCss;
-      acceptButton.innerHTML = 'Accept';
-      acceptButton.setAttribute("id", "accept-button-" + counter);
-      acceptButton.addEventListener('click', function () {
-        if ("lawngreen" === document.getElementById("accept-button-" + counter).style.backgroundColor) {
-          _this2.removeVendorFromList(id);
-          document.getElementById("accept-button-" + counter).style.backgroundColor = "";
-        } else {
-          _this2.addVendorToList(counter);
-          document.getElementById("accept-button-" + counter).style.backgroundColor = "lawngreen";
-        }
-      });
-      listItemLi.appendChild(nameDivSection);
-      listItemLi.appendChild(linkPrivacyPolicyDivSection);
-      listItemLi.appendChild(acceptButton);
-      listItem.appendChild(listItemLi);
-      listElement.appendChild(listItem);
-    }
-  }, {
-    key: "addVendorToList",
-    value: function addVendorToList(index) {
-      this.listOfAcceptedVendors.push(this.listOfVendors[index]);
-    }
-  }, {
-    key: "removeVendorFromList",
-    value: function removeVendorFromList(index) {
-      var removeIndex = this.listOfAcceptedVendors.map(function (item) {
-        return item.id;
-      }).indexOf(index);
-
-      this.listOfAcceptedVendors.splice(removeIndex, 1);
-    }
-  }, {
-    key: "createButton",
-    value: function createButton(id, name, cookie) {
-      var _this3 = this;
-
-      var elementAcceptButtonSection = document.getElementById(id);
-      elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
-
-      var button = document.createElement('button');
-      button.style.cssText = this.buttonCss;
-      button.innerHTML = name;
-      button.onclick = function () {
-        if (cookie) {
-          _this3.setCookie('gdpr-consent', _this3.listOfAcceptedVendors, _this3.cookieExpiryTimeInDays);
-        }
-
-        _this3.enableScroll();
-        _this3.closeWindow();
-
-        return false;
-      };
-      elementAcceptButtonSection.appendChild(button);
-    }
-  }, {
-    key: "createFooter",
-    value: function createFooter() {
-      var footer = document.createElement('div');
-      footer.style.cssText = this.footerCss;
-      footer.setAttribute("id", "footer");
-      document.getElementById('cookie-consent-window').appendChild(footer);
-
-      var element = document.getElementById("footer");
-      var rejectSection = document.createElement('div');
-      rejectSection.setAttribute("id", "reject-section");
-
-      var acceptSection = document.createElement('div');
-      acceptSection.setAttribute("id", "accept-button");
-      element.appendChild(rejectSection);
-      element.appendChild(acceptSection);
-
-      this.createButton("reject-section", "Reject", true);
-      this.createButton("accept-button", "Accept", true);
-    }
-  }, {
-    key: "closeWindow",
-    value: function closeWindow() {
-      var element = document.getElementById("cookie-consent-window");
-      var fullSizeContainer = document.getElementById("full-size-container");
-      fullSizeContainer.style.display = "none";
-      element.style.display = "none";
-    }
-  }, {
-    key: "isHttps",
-    value: function isHttps() {
-      return document.location.protocol === 'https:';
-    }
-  }, {
-    key: "setCookie",
-    value: function setCookie(cookieName, cookieValue, expire) {
-      var d = new Date();
-      d.setTime(d.getTime() + expire * 24 * 60 * 60 * 1000);
-      var expires = "expires=" + d.toGMTString();
-      document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
-    }
-  }, {
-    key: "getCookie",
-    value: function getCookie(cookieName) {
-      var name = cookieName + "=";
-      var ca = document.cookie.split(';');
-
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
+    let button = document.createElement('button');
+    button.style.cssText = this.buttonCss;
+    button.innerHTML = name;
+    button.onclick = () => {
+      if (cookie) {
+        this.setCookie('gdpr-consent', this.listOfAcceptedVendors, this.cookieExpiryTimeInDays);
       }
 
-      return "";
-    }
-  }, {
-    key: "checkCookie",
-    value: function checkCookie() {
-      var cookieValue = this.getCookie('gdpr-consent');
+      this.enableScroll();
+      this.closeWindow();
 
-      if (cookieValue != "") {
-        return true;
-      } else {
-        return false;
+      return false;
+    };
+    elementAcceptButtonSection.appendChild(button);
+  }
+
+  createFooter() {
+    let footer = document.createElement('div');
+    footer.style.cssText = this.footerCss;
+    footer.setAttribute("id", "footer");
+    document.getElementById('cookie-consent-window').appendChild(footer);
+
+    let element = document.getElementById("footer");
+    let rejectSection = document.createElement('div');
+    rejectSection.setAttribute("id", "reject-section");
+
+    let acceptSection = document.createElement('div');
+    acceptSection.setAttribute("id", "accept-button");
+    element.appendChild(rejectSection);
+    element.appendChild(acceptSection);
+
+    this.createButton("reject-section", "Reject", true);
+    this.createButton("accept-button", "Accept", true);
+  }
+
+  closeWindow() {
+    let element = document.getElementById("cookie-consent-window");
+    let fullSizeContainer = document.getElementById("full-size-container");
+    fullSizeContainer.style.display = "none";
+    element.style.display = "none";
+  }
+
+  isHttps() {
+    return document.location.protocol === 'https:';
+  }
+
+  setCookie(cookieName, cookieValue, expire) {
+    let d = new Date();
+    d.setTime(d.getTime() + (expire * 24 * 60 * 60 * 1000));
+    let expires ="expires=" + d.toGMTString();
+    document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
+  }
+
+  getCookie(cookieName) {
+    let name = cookieName + "=";
+    let ca = document.cookie.split(';');
+
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
       }
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this4 = this;
 
-      if (!this.isHttps()) return false;
-      if (this.checkCookie()) return false;
+    return "";
+  }
+  
+  checkCookie() {
+    let cookieValue = this.getCookie('gdpr-consent');
 
-      var stateCheck = setInterval(function () {
-        if (document.readyState === 'complete') {
-          clearInterval(stateCheck);
-
-          _this4.disableScroll();
-          _this4.createWindow();
-          _this4.createHeader();
-          _this4.createList();
-          _this4.createFooter();
-        }
-      }, 100);
+    if (cookieValue != "") {
+      return true;
+    } else {
+      return false;
     }
-  }, {
-    key: "getVendorsList",
-    value: async function getVendorsList() {
-      var response = await fetch(this.vendrosListURL);
-      var json = await response.json();
-      return json;
-    }
-  }]);
+  }
 
-  return CookieConsent;
-}();
+  render() {
+    if (!this.isHttps()) return false;
+    if (this.checkCookie()) return false;
 
-var cookie = new CookieConsent();
+    let stateCheck = setInterval(() => {
+      if (document.readyState === 'complete') {
+        clearInterval(stateCheck);
+        
+        this.disableScroll();
+        this.createWindow();
+        this.createHeader();
+        this.createList();
+        this.createFooter();
+      }
+    }, 100);
+  }
+
+  async getVendorsList() {
+    const response = await fetch(this.vendrosListURL);
+    const json = await response.json();
+    return json;
+  }
+}
+
+const cookie = new CookieConsent();
 cookie.render();
