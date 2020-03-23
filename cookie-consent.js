@@ -132,7 +132,7 @@ class CookieConsent {
     this.listOfAcceptedVendors.splice(removeIndex, 1);
   }
 
-  createButton(id, name) {
+  createButton(id, name, action) {
     let elementAcceptButtonSection = document.getElementById(id);
     elementAcceptButtonSection.style.cssText = "width: 50%;text-align: center;";
 
@@ -141,6 +141,11 @@ class CookieConsent {
     button.innerHTML = name;
     button.onclick = () => {
       this.setCookie('gdpr-consent', this.listOfAcceptedVendors, this.cookieExpiryTimeInDays);
+
+      if (action === 'accept' && this.listOfAcceptedVendors.length == 0) {
+        alert('Select any policy');
+        return false;
+      }
 
       this.enableScroll();
       this.closeWindow();
@@ -165,8 +170,8 @@ class CookieConsent {
     element.appendChild(rejectSection);
     element.appendChild(acceptSection);
 
-    this.createButton("reject-section", "Reject");
-    this.createButton("accept-button", "Accept");
+    this.createButton("reject-section", "Reject", "reject");
+    this.createButton("accept-button", "Accept", "accept");
   }
 
   closeWindow() {
